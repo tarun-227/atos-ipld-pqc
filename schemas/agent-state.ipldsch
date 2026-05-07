@@ -1,0 +1,21 @@
+## IPLD Schema — Agent State
+## Every agent persists its state as a DAG-CBOR node after each workflow step.
+## The chain of prevCID links forms a verifiable audit trail of agent decisions.
+
+type AgentState struct {
+  agentId      String        ## libp2p PeerID
+  agentRole    String        ## "DEPLOY" | "MONITOR" | "REPORT" | "LIQUIDITY" | "ANALYTICS"
+  timestamp    Int
+  status       String        ## "IDLE" | "RUNNING" | "FAILED" | "RECOVERING"
+  activeTask   optional TaskRef
+  lastEventCID optional Link ## CID of last processed event
+  prevCID      optional Link ## previous AgentState CID
+  pqcPublicKey String        ## ML-KEM-768 public key (hex) for secure messaging
+}
+
+type TaskRef struct {
+  taskId      String
+  taskType    String
+  assignedAt  Int
+  explanation String        ## why this agent picked this task
+}

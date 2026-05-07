@@ -1,0 +1,16 @@
+## IPLD Schema — ERC-20 Transfer Event
+## Captures every on-chain transfer as a verifiable DAG node.
+## Agents use these CIDs to reconstruct token flow history without querying the chain.
+
+type TokenTransferEvent struct {
+  eventType  String        ## always "TOKEN_TRANSFER"
+  agentId    String        ## libp2p PeerID of the monitoring agent
+  timestamp  Int
+  from       String        ## sender address
+  to         String        ## recipient address
+  amount     String        ## token amount as string
+  txHash     String
+  blockNumber Int
+  network    String
+  prevCID    optional Link ## links back through the event DAG
+}

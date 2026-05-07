@@ -1,0 +1,23 @@
+## IPLD Schema — ERC-20 Token Deploy Event
+## Encodes the full deployment context of an ERC-20 token as a DAG-CBOR node.
+## Each deploy event gets a unique CID that agents reference for audit and replay.
+
+type TokenDeployEvent struct {
+  eventType    String        ## always "TOKEN_DEPLOY"
+  agentId      String        ## libp2p PeerID of the deploying agent
+  timestamp    Int           ## Unix epoch ms
+  contract     ContractMeta
+  deployer     String        ## EOA address that signed the tx
+  txHash       String        ## on-chain transaction hash
+  network      String        ## e.g. "sepolia", "filecoin-calibration"
+  prevCID      optional Link ## CID of previous event in the lifecycle DAG
+}
+
+type ContractMeta struct {
+  name         String
+  symbol       String
+  decimals     Int
+  totalSupply  String        ## stored as string to avoid BN precision loss
+  address      String        ## deployed contract address
+  bytecodeHash String        ## keccak256 of deployed bytecode
+}

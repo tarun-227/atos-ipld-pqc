@@ -1,0 +1,17 @@
+{
+  "name": "atos-ipld-pqc",
+  "version": "0.1.0",
+  "description": "IPLD schemas, multiformats CID pipeline and PQC layer for ATOS multi-agent system",
+  "type": "module",
+  "scripts": {
+    "cid-demo": "node src/cid/generate.js",
+    "pqc-demo": "node src/pqc/keyExchange.js"
+  },
+  "dependencies": {
+    "@ipld/dag-cbor": "^9.0.0",
+    "@noble/ciphers": "^0.6.0",
+    "@noble/hashes": "^1.4.0",
+    "@noble/post-quantum": "^0.2.0",
+    "multiformats": "^13.0.0"
+  }
+}

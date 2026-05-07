@@ -1,0 +1,28 @@
+## IPLD Schema — Liquidity Pool Event
+## Covers addLiquidity, removeLiquidity, and swap operations.
+## The reserveSnapshotCID links to the pool state at the time of the event.
+
+type LiquidityEvent struct {
+  eventType          String        ## "ADD_LIQUIDITY" | "REMOVE_LIQUIDITY" | "SWAP"
+  agentId            String
+  timestamp          Int
+  poolAddress        String
+  tokenA             String        ## contract address
+  tokenB             String
+  amountA            String
+  amountB            String
+  actor              String        ## EOA that triggered the event
+  txHash             String
+  network            String
+  reserveSnapshotCID optional Link ## CID of PoolState node at this moment
+  prevCID            optional Link
+}
+
+type PoolState struct {
+  poolAddress  String
+  reserveA     String
+  reserveB     String
+  totalSupplyLP String
+  snapshotAt   Int           ## block number
+  cid          Link          ## self-referential CID for verification
+}
