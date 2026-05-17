@@ -5,13 +5,22 @@
   "type": "module",
   "scripts": {
     "cid-demo": "node src/cid/generate.js",
-    "pqc-demo": "node src/pqc/keyExchange.js"
+    "pqc-demo": "node src/pqc/keyExchange.js",
+    "agent:deploy": "node src/agent/agent.js deploy",
+    "agent:monitor": "node src/agent/agent.js monitor",
+    "agent:report": "node src/agent/agent.js report"
   },
   "dependencies": {
+    "@chainsafe/libp2p-noise": "^17.0.0",
     "@ipld/dag-cbor": "^9.0.0",
+    "@libp2p/identify": "^4.1.6",
+    "@libp2p/mdns": "^12.0.22",
+    "@libp2p/tcp": "^11.0.20",
+    "@libp2p/yamux": "^8.0.1",
     "@noble/ciphers": "^0.6.0",
     "@noble/hashes": "^1.4.0",
     "@noble/post-quantum": "^0.2.0",
+    "libp2p": "^3.3.1",
     "multiformats": "^13.0.0"
   }
 }
